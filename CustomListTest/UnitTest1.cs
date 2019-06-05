@@ -42,41 +42,37 @@ namespace CustomListTest
         // does the newly added item go to the correct spot? (index 5?)
 
         [TestMethod]
-        public void Add_AddItemToPopulatedList_ItemGoesToIndexFive()
+        public void Add_AddItemToPopulatedList_ItemGoesToIndexThree()
         {
             //Arrange
             CustomList<int> testList = new CustomList<int>();
             testList.Add(111);
             testList.Add(222);
             testList.Add(333);
-            testList.Add(444);
-            testList.Add(555);
-            int expected = 666;
+            int expected = 444;
             int actual;
 
             //Act
-            testList.Add(666);
-            actual = testList[5];
+            testList.Add(444);
+            actual = testList[3];
 
             //Assert
             Assert.AreEqual(expected, actual);
         }
 
         [TestMethod]
-        public void Add_AddItemToPopulatedList_CountIncrementsToSix()
+        public void Add_AddItemToPopulatedList_CountIncrementsToFour()
         {
             //arrange
             CustomList<int> testList = new CustomList<int>();
             testList.Add(111);
             testList.Add(222);
             testList.Add(333);
-            testList.Add(444);
-            testList.Add(555);
-            int expected = 6;
+            int expected = 4;
             int actual;
 
             //act
-            testList.Add(666);
+            testList.Add(444);
             actual = testList.Count;
 
             //assert
@@ -84,27 +80,25 @@ namespace CustomListTest
         }
 
         [TestMethod]
-        public void Add_AddItemOutOfArrayRange_ItemGoesToIndexSeven()
+        public void Add_AddItemOutOfArrayRange_ItemGoesToIndexFour()
         {
             CustomList<int> testList = new CustomList<int>();
             testList.Add(111);
             testList.Add(222);
             testList.Add(333);
             testList.Add(444);
-            testList.Add(555);
-            testList.Add(666);
-            int expected = 777;
+            int expected = 555;
             int actual;
 
             //act
-            testList.Add(777);
-            actual = testList[6];
+            testList.Add(555);
+            actual = testList[4];
 
             //assert
             Assert.AreEqual(expected, actual);
         }
 
-        //initial array size 6
+        //initial array capacity 4
         [TestMethod]
         public void Add_AddItemOutOfArrayRange_CountStillIncrements()
         {
@@ -114,13 +108,11 @@ namespace CustomListTest
             testList.Add(222);
             testList.Add(333);
             testList.Add(444);
-            testList.Add(555);
-            testList.Add(666);
-            int expected = 7;
+            int expected = 5;
             int actual;
 
             //act
-            testList.Add(777);
+            testList.Add(555);
             actual = testList.Count;
 
             //assert
