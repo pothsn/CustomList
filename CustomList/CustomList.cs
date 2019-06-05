@@ -6,9 +6,20 @@ using System.Threading.Tasks;
 
 namespace CustomList
 {
-    class CustomList
+    public class CustomList<T>
     {
         //Member variables (has a)
+        private int count;
+        public int Count
+        {
+            get => count;
+        }
+
+        private int capacity;
+        public int Capacity
+        {
+            get => capacity;
+        }
 
 
 
