@@ -83,26 +83,51 @@ namespace CustomListTest
             Assert.AreEqual(expected, actual);
         }
 
-        //[TestMethod]
-        //public void Add_AddItemOutOfArrayRange_CountStillIncrements()
-        //{
-        //    //arrange
-        //    CustomList<int> testList = new CustomList<int>();
-        //    testList.Add(111);
-        //    testList.Add(222);
-        //    testList.Add(333);
-        //    testList.Add(444);
-        //    testList.Add(555);
-        //    int expected = 6;
-        //    int actual;
+        [TestMethod]
+        public void Add_AddItemOutOfArrayRange_ItemGoesToIndexSeven()
+        {
+            CustomList<int> testList = new CustomList<int>();
+            testList.Add(111);
+            testList.Add(222);
+            testList.Add(333);
+            testList.Add(444);
+            testList.Add(555);
+            testList.Add(666);
+            int expected = 777;
+            int actual;
 
-        //    //act
-        //    testListAdd(666);
-        //    actual = testList.Count;
+            //act
+            testList.Add(777);
+            actual = testList[6];
 
-        //    //assert
-        //    Assert.AreEqual(expected, actual);
-        //}
+            //assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        //initial array size 6
+        [TestMethod]
+        public void Add_AddItemOutOfArrayRange_CountStillIncrements()
+        {
+            //arrange
+            CustomList<int> testList = new CustomList<int>();
+            testList.Add(111);
+            testList.Add(222);
+            testList.Add(333);
+            testList.Add(444);
+            testList.Add(555);
+            testList.Add(666);
+            int expected = 7;
+            int actual;
+
+            //act
+            testList.Add(777);
+            actual = testList.Count;
+
+            //assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        
 
 
 
