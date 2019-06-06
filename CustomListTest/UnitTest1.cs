@@ -173,7 +173,86 @@ namespace CustomListTest
 
         }
 
-        //TO DO: If user tries to remove something that isn't there. 1. Nothing got removed, 2. Count did not change. 
-        //What happens if indexes have same value? If 3 is inthe list in 2 places, show 1 was removed? All?
+        [TestMethod]
+        public void Remove_RemoveItemNoExists_NothingRemoved()
+        {
+            //Arrange
+            CustomList<int> testList = new CustomList<int>();
+            testList.Add(111);
+            testList.Add(222);
+            int expected1 = 111;
+            int expected2 = 222;
+            int actual1;
+            int actual2;
+
+            //Act
+            testList.Remove(1234);
+            actual1 = testList[0];
+            actual2 = testList[1];
+
+            //Assert
+            Assert.AreEqual(expected1, actual1);
+            Assert.AreEqual(expected2, actual2);
+        }
+
+        [TestMethod]
+        public void Remove_RemoveItemNoExists_CountDidNotChange()
+        {
+            //Arrange
+            CustomList<int> testList = new CustomList<int>();
+            testList.Add(111);
+            testList.Add(222);
+            testList.Add(333);
+            testList.Add(444);
+            int expected = 4;
+            int actual;
+
+            //Act
+            testList.Remove(1234);
+            actual = testList.Count;
+
+            //Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void Remove_RemoveItemWhenAotherIndexHasSameValue_OnlyFirstRemoved()
+        {
+            //Arrange
+            CustomList<int> testList = new CustomList<int>();
+            testList.Add(111);
+            testList.Add(222);
+            testList.Add(111);
+            testList.Add(444);
+            int expected = 111;
+            int actual;
+
+            //Act
+            testList.Remove(111);
+            actual = testList[1];
+
+            //Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void Remove_RemoveItemWhenAotherIndexHasSameValue_CountOnlyDecrementsByOne()
+        {
+            //Arrange
+            CustomList<int> testList = new CustomList<int>();
+            testList.Add(111);
+            testList.Add(222);
+            testList.Add(111);
+            testList.Add(444);
+            int expected = 3;
+            int actual;
+
+            //Act
+            testList.Remove(111);
+            actual = testList.Count;
+
+            //Assert
+            Assert.AreEqual(expected, actual);
+        }
     }
 }

@@ -13,7 +13,14 @@ namespace CustomList
 
         public T this[int i]
         {
-            get => array[i];
+            get
+            {
+                if (i > count || i < 0)
+                {
+                    throw new ArgumentOutOfRangeException();
+                }
+                return array[i];
+            }
             set
             {
                 if (i < count)
@@ -25,9 +32,6 @@ namespace CustomList
                     throw new ArgumentOutOfRangeException();
                 }                
             }
-            
-
-            //throw new ArgumentOutOfRangeException(); if i is out of range of the array
         }
 
         private int count;
@@ -49,32 +53,39 @@ namespace CustomList
 
 
         //Member methods (can do)
-        public void Add(T newData)
+        public void Add(T data)
         {
             if (count < capacity)
             {
-                array[count] = newData;
+                array[count] = data;
             }
             if (count == capacity)
             {
                 capacity = (capacity * 2);
-                T[] biggerArray = new T[capacity];
+                T[] temp = new T[capacity];
                 for (int i = 0; i < count; i++ )
                 {
-                    T[] temp = new T[capacity];
                     temp[i] = array[i];
-                    array[i] = biggerArray[i];
-                    biggerArray[i] = temp[i];
                 }
-                biggerArray[count] = newData;
-                array = biggerArray;
+                temp[count] = data;
+                array = temp;
             }
             count++;
         }
 
         public void Remove(T targetData)
         {
-
+            T[] temp = new T[capacity];
+            for (int i = 0; i < count; i++)
+            {
+                if (targetData.Equals(array[i]))
+                {
+                    break;
+                }
+                temp[i] = array[i];
+            }
+            array = temp;
+            count--;
         }
     }
 }
