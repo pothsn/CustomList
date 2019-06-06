@@ -11,11 +11,16 @@ namespace CustomList
         //Member variables (has a)
         T[] array = new T[4];
 
+        public T this[int i]
+        {
+            get => array[i];
+            set => array[i] = value;
+        }
+
         private int count;
         public int Count
         {
             get => count;
-            set => count = value;
         }
 
         private int capacity = 4;
