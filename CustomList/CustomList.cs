@@ -18,7 +18,7 @@ namespace CustomList
             set => count = value;
         }
 
-        private int capacity;
+        private int capacity = 4;
         public int Capacity
         {
             get => capacity;
@@ -33,20 +33,23 @@ namespace CustomList
         //Member methods (can do)
         public void Add(T newData)
         {
-            if (capacity < 4)
+            if (count < capacity)
             {
-                if (count < 1)
-                {
-                    array[0] = newData;
-                }
-                else
-                {
-                    array[count + 1] = newData;
-                }
+                array[count] = newData;
             }
-            else
+            if (count == capacity)
             {
-                //move data to larger array, increase capacity
+                capacity = (capacity * 2);
+                T[] biggerArray = new T[capacity];
+                for (int i = 0; i < count; i++ )
+                {
+                    T[] temp = new T[capacity];
+                    temp[i] = array[i];
+                    array[i] = biggerArray[i];
+                    biggerArray[i] = temp[i];
+                }
+                biggerArray[count] = newData;
+                array = biggerArray;
             }
             count++;
         }
