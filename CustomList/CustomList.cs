@@ -14,7 +14,20 @@ namespace CustomList
         public T this[int i]
         {
             get => array[i];
-            set => array[i] = value;
+            set
+            {
+                if (i < count)
+                {
+                     array[i] = value;
+                }
+                if (i > count || i < 0)
+                {
+                    throw new ArgumentOutOfRangeException();
+                }                
+            }
+            
+
+            //throw new ArgumentOutOfRangeException(); if i is out of range of the array
         }
 
         private int count;
@@ -57,6 +70,11 @@ namespace CustomList
                 array = biggerArray;
             }
             count++;
+        }
+
+        public void Remove(T targetData)
+        {
+
         }
     }
 }
