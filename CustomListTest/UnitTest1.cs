@@ -37,10 +37,6 @@ namespace CustomListTest
             Assert.AreEqual(expected, actual);
         }
 
-        // ADDITIONAL TEST IDEA:
-        // If we add an item to a list that already has 5 things in it,
-        // does the newly added item go to the correct spot? (index 5?)
-
         [TestMethod]
         public void Add_AddItemToPopulatedList_ItemGoesToIndexThree()
         {
@@ -160,19 +156,17 @@ namespace CustomListTest
         [TestMethod]
         public void Remove_RemoveItemFromIndexWithinList_ItemsCloseGap()
         {
-            //TO DO: Instead check what is at index 2
             //Arrange
             CustomList<int> testList = new CustomList<int>();
             testList.Add(111);
             testList.Add(222);
             testList.Add(333);
             testList.Add(444);
-            int[] expected = { 111, 222, 444 };
-            CustomList<int> actual;
+            int expected = (444);
 
             //Act
             testList.Remove(333);
-            actual = testList;
+            int actual = testList[2];
 
             //Assert
             Assert.AreEqual(expected, actual);
