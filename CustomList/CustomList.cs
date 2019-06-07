@@ -15,7 +15,7 @@ namespace CustomList
         {
             get
             {
-                if (i > count || i < 0)
+                if (i >= count || i < 0)
                 {
                     throw new ArgumentOutOfRangeException();
                 }
@@ -27,7 +27,7 @@ namespace CustomList
                 {
                      array[i] = value;
                 }
-                if (i > count || i < 0)
+                if (i >= count || i < 0)
                 {
                     throw new ArgumentOutOfRangeException();
                 }                
@@ -45,6 +45,7 @@ namespace CustomList
         {
             get => capacity;
         }
+
 
 
 
@@ -76,16 +77,33 @@ namespace CustomList
         public void Remove(T targetData)
         {
             T[] temp = new T[capacity];
+            bool itemWasRemoved = false;
+            
             for (int i = 0; i < count; i++)
             {
-                if (targetData.Equals(array[i]))
-                {
-                    break;
-                }
-                temp[i] = array[i];
+                    if (!targetData.Equals(array[i]) && itemWasRemoved == false)
+                    {
+                        temp[i] = array[i];
+                    }
+                    else
+                    {
+                        itemWasRemoved = true;
+                        if (i == count - 1)
+                        {
+                                temp[i] = default(T);
+                                
+                        }
+                        else
+                        {
+                            temp[i] = array[i + 1];
+                        }
+                    }
             }
-            array = temp;
-            count--;
+            if (itemWasRemoved)
+            {
+                count--;
+                array = temp;
+            }             
         }
     }
 }

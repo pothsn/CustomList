@@ -208,7 +208,7 @@ namespace CustomListTest
             int actual;
 
             //Act
-            testList.Remove(1234);
+            testList.Remove(555);
             actual = testList.Count;
 
             //Assert

@@ -10,16 +10,18 @@ namespace CustomList
     {
         static void Main(string[] args)
         {
-            CustomList<int> customList = new CustomList<int>();
-            customList.Add(111);
-            customList.Add(222);
-            customList.Add(111);
-            customList.Add(444);
-            customList.Add(555);
+            //Arrange
+            CustomList<int> testList = new CustomList<int>();
+            testList.Add(111);
+            testList.Add(222);
+            testList.Add(333);
+            testList.Add(444);
+            int expected = 3;
+            int actual;
 
-            customList.Remove(555);
-            //customList.Remove(444);
-            //customList.Remove(111);
+            //Act
+            testList.Remove(444);
+
         }
     }
 }
