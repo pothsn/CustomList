@@ -16,12 +16,7 @@ namespace CustomList
             testList.Add(222);
             testList.Add(333);
             testList.Add(444);
-            int expected = 3;
-            int actual;
-
-            //Act
-            testList.Remove(444);
-
+            Console.WriteLine(testList.ToString());
         }
     }
 }

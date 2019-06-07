@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CustomList
 {
-    public class CustomList<T>
+    public class CustomList<T> : IEnumerable<T>
     {
         //Member variables (has a)
         T[] array = new T[4];
@@ -25,12 +26,12 @@ namespace CustomList
             {
                 if (i < count)
                 {
-                     array[i] = value;
+                    array[i] = value;
                 }
                 if (i >= count || i < 0)
                 {
                     throw new ArgumentOutOfRangeException();
-                }                
+                }
             }
         }
 
@@ -64,7 +65,7 @@ namespace CustomList
             {
                 capacity = (capacity * 2);
                 T[] temp = new T[capacity];
-                for (int i = 0; i < count; i++ )
+                for (int i = 0; i < count; i++)
                 {
                     temp[i] = array[i];
                 }
@@ -78,32 +79,79 @@ namespace CustomList
         {
             T[] temp = new T[capacity];
             bool itemWasRemoved = false;
-            
+
             for (int i = 0; i < count; i++)
             {
-                    if (!targetData.Equals(array[i]) && itemWasRemoved == false)
+                if (!targetData.Equals(array[i]) && itemWasRemoved == false)
+                {
+                    temp[i] = array[i];
+                }
+                else
+                {
+                    itemWasRemoved = true;
+                    if (i == count - 1)
                     {
-                        temp[i] = array[i];
+                        temp[i] = default(T);
+
                     }
                     else
                     {
-                        itemWasRemoved = true;
-                        if (i == count - 1)
-                        {
-                                temp[i] = default(T);
-                                
-                        }
-                        else
-                        {
-                            temp[i] = array[i + 1];
-                        }
+                        temp[i] = array[i + 1];
                     }
+                }
             }
             if (itemWasRemoved)
             {
                 count--;
                 array = temp;
-            }             
+            }
+        }
+
+        public override string ToString()
+        {
+            //Utilize stringbuilder to make this method 
+
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < count; i++)
+            {
+                if (i == count - 1)
+                {
+                    sb.Append(array[i]);
+                }
+                else
+                {
+                    sb.Append(array[i]);
+                    sb.Append(", ");
+                }
+            }
+            return sb.ToString();
+        }
+
+        public static CustomList<T> operator +(CustomList<T> List1, CustomList<T> List2)
+        {
+            CustomList<T> combinedList = new CustomList<T>();
+            for (int i = 0; i < List1.Count; i++)
+            {
+                combinedList.Add(List1[i]);
+            }
+            for (int i = 0; i < List2.Count; i++)
+            {
+                combinedList.Add(List2[i]);
+            }
+            return combinedList;
+        }
+
+        public IEnumerator<T> GetEnumerator()
+        {
+            for (int i = 0; i < count; i++)
+            {
+                yield return this[i];
+            }
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return this.GetEnumerator();
         }
     }
 }

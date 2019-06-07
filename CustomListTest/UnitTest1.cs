@@ -137,7 +137,6 @@ namespace CustomListTest
             Assert.AreEqual(expected, actual);
         }
 
-        //TODO: Test that an exception was thrown if i is out of range
         [TestMethod]
         [ExpectedException(typeof(ArgumentOutOfRangeException))]
         public void Remove_AttemptToRemoveItemFromOutOfRangeIndex_ExceptionThrownIsTrue()
@@ -254,5 +253,153 @@ namespace CustomListTest
             //Assert
             Assert.AreEqual(expected, actual);
         }
+        //END REMOVE
+
+        //BEGIN ToString override
+        [TestMethod]
+        public void ToString_ConvertListToString_StringHasCorrectValues()
+        {
+            //Arrange
+            CustomList<int> testList = new CustomList<int>();
+            testList.Add(111);
+            testList.Add(222);
+            testList.Add(333);
+            testList.Add(444);
+            string expected = "111, 222, 333, 444";
+            string actual;
+
+            //Act
+            actual = testList.ToString();
+
+            //Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void ToString_ConvertEmptyListToString_StringIsEmpty()
+        {
+            //Arrange
+            CustomList<int> testList = new CustomList<int>();
+            string expected = "";
+            string actual;
+
+            //Act
+            actual = testList.ToString();
+
+            //Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void ToString_ConvertBiggerListToString_StringHasCorrectValues()
+        {
+            //Arrange
+            CustomList<int> testList = new CustomList<int>();
+            testList.Add(111);
+            testList.Add(222);
+            testList.Add(333);
+            testList.Add(444);
+            testList.Add(555);
+            testList.Add(666);
+            testList.Add(777);
+            testList.Add(888);
+            string expected = "111, 222, 333, 444, 555, 666, 777, 888";
+            string actual;
+
+            //Act
+            actual = testList.ToString();
+
+            //Assert
+            Assert.AreEqual(expected, actual);
+        }
+        //END ToString override
+
+        //BEGIN overload +
+        [TestMethod]
+        public void ConcatLists_AddTwoListsTogether_StringHasCorrectValues()
+        {
+            //Arrange
+            CustomList<int> testListOne = new CustomList<int>();
+            testListOne.Add(111);
+            testListOne.Add(222);
+            testListOne.Add(333);
+            testListOne.Add(444);
+            CustomList<int> testListTwo = new CustomList<int>();
+            testListTwo.Add(555);
+            testListTwo.Add(666);
+            testListTwo.Add(777);
+            testListTwo.Add(888);
+            string expected = "111,222,333,444,555,666,777,888";
+            string actual;
+
+            //Act
+            CustomList<int> combinedList = testListOne + testListTwo;
+            actual = combinedList.ToString();
+
+            //Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void ConCatLists_AddTwoListsTogether_StringHasCorrectCount()
+        {
+            //Arrange
+            CustomList<int> testListOne = new CustomList<int>();
+            testListOne.Add(111);
+            testListOne.Add(222);
+            testListOne.Add(333);
+            testListOne.Add(444);
+            CustomList<int> testListTwo = new CustomList<int>();
+            testListTwo.Add(555);
+            testListTwo.Add(666);
+            testListTwo.Add(777);
+            testListTwo.Add(888);
+            int expected = 8;
+            int actual;
+
+            //Act
+            CustomList<int> combinedList = testListOne + testListTwo;
+            actual = combinedList.Count;
+
+            //Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void ConCatLists_AddThreeListsTogether_StringHasCorrectCount()
+        {
+            //Arrange
+            CustomList<int> testListOne = new CustomList<int>();
+            testListOne.Add(111);
+            testListOne.Add(222);
+            testListOne.Add(333);
+            testListOne.Add(444);
+            CustomList<int> testListTwo = new CustomList<int>();
+            testListTwo.Add(555);
+            testListTwo.Add(666);
+            testListTwo.Add(777);
+            testListTwo.Add(888);
+            CustomList<int> testListThree = new CustomList<int>();
+            testListTwo.Add(555);
+            testListTwo.Add(666);
+            testListTwo.Add(777);
+            testListTwo.Add(888);
+            int expected = 12;
+            int actual;
+
+            //Act
+            CustomList<int> combinedList = testListOne + testListTwo + testListThree;
+            actual = combinedList.Count;
+
+            //Assert
+            Assert.AreEqual(expected, actual);
+        }
+        //END overload +
+
+
+
+
+
+
     }
 }
