@@ -184,9 +184,32 @@ namespace CustomList
             return combinedList;
         }
 
-        public static CustomList<T> Zip(CustomList<T> List1, CustomList<T> list2)
+        public static CustomList<T> Zip(CustomList<T> List1, CustomList<T>List2)
         {
-
+            CustomList<T> combinedList = new CustomList<T>();
+            if (List1.count >= List2.count)
+            {
+                for (int i = 0; i < List1.count; i++)
+                {
+                    combinedList.Add(List1[i]);
+                    if (i < List2.count)
+                    {
+                        combinedList.Add(List2[i]);
+                    }
+                }
+            }
+            if (List1.count < List2.count)
+            {
+                for (int i = 0; i < List2.count; i++)
+                {                    
+                    if (i < List1.count)
+                    {
+                        combinedList.Add(List1[i]);                        
+                    }
+                    combinedList.Add(List2[i]);
+                }
+            }
+            return combinedList;
         }
     }
 }
