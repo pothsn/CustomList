@@ -109,8 +109,6 @@ namespace CustomList
 
         public override string ToString()
         {
-            //Utilize stringbuilder to make this method 
-
             StringBuilder sb = new StringBuilder();
             for (int i = 0; i < count; i++)
             {

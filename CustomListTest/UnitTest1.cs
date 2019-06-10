@@ -329,7 +329,7 @@ namespace CustomListTest
             testListTwo.Add(666);
             testListTwo.Add(777);
             testListTwo.Add(888);
-            string expected = "111,222,333,444,555,666,777,888";
+            string expected = "111, 222, 333, 444, 555, 666, 777, 888";
             string actual;
 
             //Act
