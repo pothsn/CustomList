@@ -571,7 +571,31 @@ namespace CustomListTest
         }
 
         [TestMethod]
-        public void Zip_ZipTwoListsTogetherWithDifferentCounts_ListHasCorrectCount()
+        public void Zip_ZipTwoListsTogetherWhenFirstHasBiggerCount_ListHasCorrectCount()
+        {
+            //Arrange
+            CustomList<int> testListOne = new CustomList<int>();
+            testListOne.Add(111);
+            testListOne.Add(222);
+            testListOne.Add(333);
+            testListOne.Add(444);
+            CustomList<int> testListTwo = new CustomList<int>();
+            testListTwo.Add(555);
+            testListTwo.Add(666);
+            testListTwo.Add(777);
+            int expected = 7;
+            int actual;
+
+            //Act
+            CustomList<int> result = CustomList<int>.Zip(testListOne, testListTwo);
+            actual = result.Count;
+
+            //Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void Zip_ZipTwoListsTogetherWhenSecondHasBiggerCount_ListHasCorrectCount()
         {
             //Arrange
             CustomList<int> testListOne = new CustomList<int>();
