@@ -16,6 +16,7 @@ namespace CustomList
             testList.Add(222);
             testList.Add(333);
             testList.Add(444);
+            testList[-1] = 9;
             Console.WriteLine(testList.ToString());
         }
     }

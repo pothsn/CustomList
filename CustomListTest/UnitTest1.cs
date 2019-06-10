@@ -476,6 +476,7 @@ namespace CustomListTest
             //Assert
             Assert.AreEqual(expected, actual);
         }
+
         //END overload -
 
         //BEGIN Zip
@@ -617,5 +618,6 @@ namespace CustomListTest
             //Assert
             Assert.AreEqual(expected, actual);
         }
+        //END Zip
     }
 }

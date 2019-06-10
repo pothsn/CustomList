@@ -10,7 +10,7 @@ namespace CustomList
     public class CustomList<T> : IEnumerable<T>
     {
         //Member variables (has a)
-        T[] array = new T[4];
+        T[] array;
 
         public T this[int i]
         {
@@ -24,7 +24,7 @@ namespace CustomList
             }
             set
             {
-                if (i < count)
+                if (i < count && i >= 0)
                 {
                     array[i] = value;
                 }
@@ -41,13 +41,19 @@ namespace CustomList
             get => count;
         }
 
-        private int capacity = 4;
+        private int capacity;
         public int Capacity
         {
             get => capacity;
         }
 
         //Constructor (is a)
+        public CustomList()
+        {
+            count = 0;
+            capacity = 4;
+            array = new T[capacity];
+        }
 
         //Member methods (can do)
         public IEnumerator<T> GetEnumerator()
@@ -120,42 +126,39 @@ namespace CustomList
             StringBuilder sb = new StringBuilder();
             for (int i = 0; i < count; i++)
             {
-                if (i == count - 1)
+                sb.Append(array[i]);
+                if (i != count - 1)
                 {
-                    sb.Append(array[i]);
-                }
-                else
-                {
-                    sb.Append(array[i]);
                     sb.Append(", ");
                 }
+                
             }
             return sb.ToString();
         }
 
-        public static CustomList<T> operator +(CustomList<T> List1, CustomList<T> List2)
+        public static CustomList<T> operator +(CustomList<T> list1, CustomList<T> list2)
         {
             CustomList<T> combinedList = new CustomList<T>();
-            for (int i = 0; i < List1.Count; i++)
+            for (int i = 0; i < list1.Count; i++)
             {
-                combinedList.Add(List1[i]);
+                combinedList.Add(list1[i]);
             }
-            for (int i = 0; i < List2.Count; i++)
+            for (int i = 0; i < list2.Count; i++)
             {
-                combinedList.Add(List2[i]);
+                combinedList.Add(list2[i]);
             }
             return combinedList;
         }
 
-        public static CustomList<T> operator -(CustomList<T> List1, CustomList<T> List2)
+        public static CustomList<T> operator -(CustomList<T> list1, CustomList<T> list2)
         {
             CustomList<T> combinedList = new CustomList<T>();
             bool dataIsRepeated = false;
-            foreach (T data in List1)
+            foreach (T data in list1)
             {
-                for (int i = 0; i < List2.Count; i++)
+                for (int i = 0; i < list2.Count; i++)
                 {
-                    if (data.Equals(List2[i]))
+                    if (data.Equals(list2[i]))
                     {
                         dataIsRepeated = true;
                     }
@@ -165,12 +168,12 @@ namespace CustomList
                     combinedList.Add(data);
                 }
                 dataIsRepeated = false;
-            }           
-            foreach (T data in List2) 
+            }
+            foreach (T data in list2) 
             {
-                for (int i = 0; i < List1.Count; i++)
+                for (int i = 0; i < list1.Count; i++)
                 {
-                    if (data.Equals(List1[i]))
+                    if (data.Equals(list1[i]))
                     {
                         dataIsRepeated = true;
                     }
@@ -184,29 +187,29 @@ namespace CustomList
             return combinedList;
         }
 
-        public static CustomList<T> Zip(CustomList<T> List1, CustomList<T>List2)
+        public static CustomList<T> Zip(CustomList<T> list1, CustomList<T>list2)
         {
             CustomList<T> combinedList = new CustomList<T>();
-            if (List1.count >= List2.count)
+            if (list1.count >= list2.count)
             {
-                for (int i = 0; i < List1.count; i++)
+                for (int i = 0; i < list1.count; i++)
                 {
-                    combinedList.Add(List1[i]);
-                    if (i < List2.count)
+                    combinedList.Add(list1[i]);
+                    if (i < list2.count)
                     {
-                        combinedList.Add(List2[i]);
+                        combinedList.Add(list2[i]);
                     }
                 }
             }
-            if (List1.count < List2.count)
+            if (list1.count < list2.count)
             {
-                for (int i = 0; i < List2.count; i++)
+                for (int i = 0; i < list2.count; i++)
                 {                    
-                    if (i < List1.count)
+                    if (i < list1.count)
                     {
-                        combinedList.Add(List1[i]);                        
+                        combinedList.Add(list1[i]);                        
                     }
-                    combinedList.Add(List2[i]);
+                    combinedList.Add(list2[i]);
                 }
             }
             return combinedList;
