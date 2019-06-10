@@ -137,19 +137,37 @@ namespace CustomList
         public static CustomList<T> operator -(CustomList<T> List1, CustomList<T> List2)
         {
             CustomList<T> combinedList = new CustomList<T>();
-            for (int i = 0; i < List1.Count; i++)
+            bool dataIsRepeated = false;
+            foreach (T data in List1)
             {
-                combinedList.Add(List1[i]);
-            }
-            for (int i = 0; i < List2.Count; i++)
-            {
-                for (i = 0; i < List1.Count; i++)
+                for (int i = 0; i < List2.Count; i++)
                 {
-                    if (!List1[i].Equals(List2[i]))
+                    if (data.Equals(List2[i]))
                     {
-                        combinedList.Add(List2[i]);
+                        dataIsRepeated = true;
                     }
-                }             
+                }
+                if (dataIsRepeated == false)
+                {
+                    combinedList.Add(data);
+                }
+                dataIsRepeated = false;
+            }
+            
+            foreach (T data in List2) 
+            {
+                for (int i = 0; i < List1.Count; i++)
+                {
+                    if (data.Equals(List1[i]))
+                    {
+                        dataIsRepeated = true;
+                    }
+                }
+                if (dataIsRepeated == false)
+                {
+                    combinedList.Add(data);
+                }
+                dataIsRepeated = false;
             }
             return combinedList;
         }

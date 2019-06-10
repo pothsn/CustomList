@@ -411,7 +411,7 @@ namespace CustomListTest
             testListTwo.Add(232);
             testListTwo.Add(333);
             testListTwo.Add(454);
-            string expected = "222, 232, 444, 454";
+            string expected = "222, 444, 232, 454";
             string actual;
 
             //Act
@@ -466,7 +466,7 @@ namespace CustomListTest
             testListTwo.Add(444);
             testListTwo.Add(111);
             testListTwo.Add(343);
-            string expected = "121, 232, 343";
+            string expected = "121, 222, 232, 343";
             string actual;
                        
             //Act
