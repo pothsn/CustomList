@@ -1,0 +1,37 @@
+- operator overload
+
+Compares two custom lists, ignoring repeated data 
+and moving unique data to a new custom list.
+
+Syntax:
+CustomList<T> result = listOne - listTwo;
+
+Paramaters:
+CustomList<T> list1
+A custom list object to be compared with another when 
+eliminating repeated characters.
+
+CustomList<T> list2
+A custom list object to be compared with another when 
+eliminating repeated characters.
+
+Return type:
+CustomList<T>
+
+Example:
+The following example demonstrates how to use my - operator overload
+to subtract one instance of a list from another.
+
+CustomList<int> listOne = new CustomList<int>();
+testListOne.Add(111);
+testListOne.Add(222);
+testListOne.Add(333);
+testListOne.Add(444);
+CustomList<int> listTwo = new CustomList<int>();
+testListTwo.Add(111);
+testListTwo.Add(232);
+testListTwo.Add(333);
+testListTwo.Add(454);
+
+CustomList<int> reslut = listOne - listTwo;
+*result = [222, 444, 232, 454]
