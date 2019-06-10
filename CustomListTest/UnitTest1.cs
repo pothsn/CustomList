@@ -7,7 +7,7 @@ namespace CustomListTest
     [TestClass]
     public class CustomListTest
     {
-        //BEGIN ADD
+        //BEGIN Add
         [TestMethod]
         public void Add_AddItemToEmptyList_ItemGoesToIndexZero()
         {
@@ -114,9 +114,9 @@ namespace CustomListTest
             //assert
             Assert.AreEqual(expected, actual);
         }
-        //END ADD
+        //END Add
 
-        //BEGIN REMOVE
+        //BEGIN Remove
         [TestMethod]
         public void Remove_RemoveItemFromEndOfList_CountDecrements()
         {
@@ -253,7 +253,7 @@ namespace CustomListTest
             //Assert
             Assert.AreEqual(expected, actual);
         }
-        //END REMOVE
+        //END Remove
 
         //BEGIN ToString override
         [TestMethod]
@@ -475,13 +475,53 @@ namespace CustomListTest
 
             //Assert
             Assert.AreEqual(expected, actual);
+        }
+        //END overload -
 
+        //BEGIN Zip
+        [TestMethod]
+        public void Zip_ZipTwoListsTogether_ListHasCorrectValues()
+        {
+            //Arrange
+            CustomList<int> testListOne = new CustomList<int>();
+            testListOne.Add(111);
+            testListOne.Add(222);
+            testListOne.Add(333);
+            CustomList<int> testListTwo = new CustomList<int>();
+            testListTwo.Add(444);
+            testListTwo.Add(555);
+            testListTwo.Add(666);
+            string expected = "111, 222, 333, 444, 555, 666";
+            string actual;
+
+            //Act
+            actual = CustomList<int>.Zip(testListOne, testListTwo).ToString();
+            
+            //Assert
+            Assert.AreEqual(expected, actual);
         }
 
+        [TestMethod]
+        public void Zip_ZipTWoListsTogether_ListHasCorrectCount()
+        {
+            //Arrange
+            CustomList<int> testListOne = new CustomList<int>();
+            testListOne.Add(111);
+            testListOne.Add(222);
+            testListOne.Add(333);
+            CustomList<int> testListTwo = new CustomList<int>();
+            testListTwo.Add(444);
+            testListTwo.Add(555);
+            testListTwo.Add(666);
+            int expected = 6;
+            int actual;
 
+            //Act
+            CustomList<int> result = CustomList<int>.Zip(testListOne, testListTwo);
+            actual = result.Count;
 
-
-
-
+            //Assert
+            Assert.AreEqual(expected, actual);
+        }
     }
 }

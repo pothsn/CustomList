@@ -50,6 +50,19 @@ namespace CustomList
         //Constructor (is a)
 
         //Member methods (can do)
+        public IEnumerator<T> GetEnumerator()
+        {
+            for (int i = 0; i < count; i++)
+            {
+                yield return this[i];
+            }
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return this.GetEnumerator();
+        }
+
         public void Add(T data)
         {
             if (count < capacity)
@@ -152,8 +165,7 @@ namespace CustomList
                     combinedList.Add(data);
                 }
                 dataIsRepeated = false;
-            }
-            
+            }           
             foreach (T data in List2) 
             {
                 for (int i = 0; i < List1.Count; i++)
@@ -172,17 +184,9 @@ namespace CustomList
             return combinedList;
         }
 
-        public IEnumerator<T> GetEnumerator()
+        public static CustomList<T> Zip(CustomList<T> List1, CustomList<T> list2)
         {
-            for (int i = 0; i < count; i++)
-            {
-                yield return this[i];
-            }
-        }
 
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return this.GetEnumerator();
         }
     }
 }
