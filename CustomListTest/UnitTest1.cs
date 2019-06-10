@@ -432,10 +432,10 @@ namespace CustomListTest
             testListOne.Add(333);
             testListOne.Add(444);
             CustomList<int> testListTwo = new CustomList<int>();
-            testListTwo.Add(111);
-            testListTwo.Add(232);
             testListTwo.Add(333);
-            testListTwo.Add(454);
+            testListTwo.Add(232);
+            testListTwo.Add(444);
+            testListTwo.Add(434);
             int expected = 4;
             int actual;
 
