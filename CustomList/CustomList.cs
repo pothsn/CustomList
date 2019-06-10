@@ -47,12 +47,7 @@ namespace CustomList
             get => capacity;
         }
 
-
-
-
         //Constructor (is a)
-
-
 
         //Member methods (can do)
         public void Add(T data)
@@ -137,6 +132,19 @@ namespace CustomList
                 combinedList.Add(List2[i]);
             }
             return combinedList;
+        }
+
+        public static CustomList<T> operator -(CustomList<T> List1, CustomList<T> List2)
+        {
+            
+
+
+
+
+
+
+
+
         }
 
         public IEnumerator<T> GetEnumerator()

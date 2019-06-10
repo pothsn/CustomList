@@ -333,8 +333,8 @@ namespace CustomListTest
             string actual;
 
             //Act
-            CustomList<int> combinedList = testListOne + testListTwo;
-            actual = combinedList.ToString();
+            CustomList<int> result = testListOne + testListTwo;
+            actual = result.ToString();
 
             //Assert
             Assert.AreEqual(expected, actual);
@@ -358,8 +358,8 @@ namespace CustomListTest
             int actual;
 
             //Act
-            CustomList<int> combinedList = testListOne + testListTwo;
-            actual = combinedList.Count;
+            CustomList<int> result = testListOne + testListTwo;
+            actual = result.Count;
 
             //Assert
             Assert.AreEqual(expected, actual);
@@ -388,13 +388,95 @@ namespace CustomListTest
             int actual;
 
             //Act
-            CustomList<int> combinedList = testListOne + testListTwo + testListThree;
-            actual = combinedList.Count;
+            CustomList<int> result = testListOne + testListTwo + testListThree;
+            actual = result.Count;
 
             //Assert
             Assert.AreEqual(expected, actual);
         }
         //END overload +
+
+        //BEGIN overload -
+        [TestMethod]
+        public void SubtractLists_SubtractOneListFromAnother_ListHasCorrectValues()
+        {
+            //Arrange
+            CustomList<int> testListOne = new CustomList<int>();
+            testListOne.Add(111);
+            testListOne.Add(222);
+            testListOne.Add(333);
+            testListOne.Add(444);
+            CustomList<int> testListTwo = new CustomList<int>();
+            testListTwo.Add(111);
+            testListTwo.Add(232);
+            testListTwo.Add(333);
+            testListTwo.Add(454);
+            string expected = "222, 232, 444, 454";
+            string actual;
+
+            //Act
+            CustomList<int> result = testListOne - testListTwo;
+            actual = result.ToString();
+
+            //Assert
+            Assert.AreEqual(expected, actual);     
+        }
+
+        [TestMethod]
+        public void SubtractLists_SubrtactOneListFromAnother_ListHasCorrectCount()
+        {
+            //Arrange
+            CustomList<int> testListOne = new CustomList<int>();
+            testListOne.Add(111);
+            testListOne.Add(222);
+            testListOne.Add(333);
+            testListOne.Add(444);
+            CustomList<int> testListTwo = new CustomList<int>();
+            testListTwo.Add(111);
+            testListTwo.Add(232);
+            testListTwo.Add(333);
+            testListTwo.Add(454);
+            int expected = 4;
+            int actual;
+
+            //Act
+            CustomList<int> result = testListOne - testListTwo;
+            actual = result.Count;
+
+            //Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void SubtractLists_SubtractThreeLists_ListHasCorrectValues()
+        {
+            //Arrange
+            CustomList<int> testListOne = new CustomList<int>();
+            testListOne.Add(111);
+            testListOne.Add(121);
+            testListOne.Add(444);
+            testListOne.Add(333);
+            CustomList<int> testListTwo = new CustomList<int>();
+            testListTwo.Add(222);
+            testListTwo.Add(111);
+            testListTwo.Add(232);
+            testListTwo.Add(444);
+            CustomList<int> testListThree = new CustomList<int>();
+            testListTwo.Add(333);
+            testListTwo.Add(444);
+            testListTwo.Add(111);
+            testListTwo.Add(343);
+            string expected = "121, 232, 343";
+            string actual;
+                       
+            //Act
+            CustomList<int> result = testListOne - testListTwo - testListThree;
+            actual = result.ToString();
+
+            //Assert
+            Assert.AreEqual(expected, actual);
+
+        }
 
 
 
